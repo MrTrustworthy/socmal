@@ -1,0 +1,9 @@
+#!/bin/sh
+
+find /Users/`whoami`/Library/Application\ Support/Lavapotion/SongsOfConquest/Levels/Adventure -type f -not -name "*autosave.bytes" -exec cp {} . \;
+find . -type f -name "*.bytes" -exec bash -c "gunzip -c -S '.bytes' {} | jq . > {}.json"  \;
+find . -type f -name "*.bytes" -delete
+
+git add "*.json"
+git add -u
+
